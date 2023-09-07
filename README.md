@@ -1,2 +1,6 @@
 # xpu-programming
-XPU programming experiments
+Experiments of programming XPUs in their native language.
+
+- CUDA
+- OpenCL
+- Triton
