@@ -1,4 +1,13 @@
 # xpu-programming
-Experiments of programming XPUs in their native language.
+Experiments on programming XPUs.
 
-- CUDA
+<table border="1">
+    <tr>
+        <th>Language</th>
+        <th>Device</th>        
+    </tr>
+    <tr>
+        <td>CUDA</td>
+        <td>Nvidia GPUs</td>        
+    </tr>
+</table>
