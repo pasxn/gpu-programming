@@ -2,5 +2,3 @@
 Experiments of programming XPUs in their native language.
 
 - CUDA
-- OpenCL
-- Triton
