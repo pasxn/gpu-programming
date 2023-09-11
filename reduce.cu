@@ -73,7 +73,7 @@ void reduce(float * d_out, float * d_intermediate, float * d_in, int size, bool 
   }
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
   int deviceCount;
   cudaGetDeviceCount(&deviceCount);
   if (deviceCount == 0) {
