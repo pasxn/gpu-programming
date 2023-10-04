@@ -1,4 +1,4 @@
- __kernel void hello(__global char* data) {
+__kernel void hello(__global char* data) {
   
   data[0] = 'H';
   data[1] = 'e';
@@ -7,4 +7,4 @@
   data[4] = 'o';
   data[5] = '\n';
 
- }
+}

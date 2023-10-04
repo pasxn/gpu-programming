@@ -8,7 +8,7 @@ int main() {
   std::vector<cl::Platform> platforms;
   cl::Platform::get(&platforms);
 
-  if (platforms.empty()){
+  if (platforms.empty()) {
     std::cerr << "no platforms found!" << std::endl;
     return -1;
   }
@@ -18,7 +18,7 @@ int main() {
   std::vector<cl::Device> devices;
   platform.getDevices(CL_DEVICE_TYPE_ALL, &devices);
 
-  if (devices.empty()){
+  if (devices.empty()) {
     std::cerr << "no devices found!" << std::endl;
     return -1;
   }
