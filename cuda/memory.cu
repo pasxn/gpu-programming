@@ -7,8 +7,11 @@
 
 // a __device__ or __global__ function runs on the GPU
 __global__ void use_local_memory_GPU(float in) {
-  float f;    // variable "f" is in local memory and private to each thread
-  f = in;     // parameter "in" is in local memory and private to each thread
+  // variable "f" is in local memory and private to each thread
+  float f;
+  
+  // parameter "in" is in local memory and private to each thread
+  f = in;
   // ... real code would presumably do other stuff here ... 
 }
 
@@ -58,35 +61,33 @@ __global__ void use_shared_memory_GPU(float *array) {
 }
 
 int main(int argc, char **argv) {
-  /*
-   * First, call a kernel that shows using local memory 
-   */
+  // first, call a kernel that shows using local memory 
   use_local_memory_GPU<<<1, 128>>>(2.0f);
 
-  /*
-   * Next, call a kernel that shows using global memory
-   */
+  // next, call a kernel that shows using global memory
   float h_arr[128];   // convention: h_ variables live on host
   float *d_arr;       // convention: d_ variables live on device (GPU global mem)
 
   // allocate global memory on the device, place result in "d_arr"
   cudaMalloc((void **) &d_arr, sizeof(float) * 128);
+  
   // now copy data from host memory "h_arr" to device memory "d_arr"
   cudaMemcpy((void *)d_arr, (void *)h_arr, sizeof(float) * 128, cudaMemcpyHostToDevice);
+  
   // launch the kernel (1 block of 128 threads)
   use_global_memory_GPU<<<1, 128>>>(d_arr);  // modifies the contents of array at d_arr
+  
   // copy the modified array back to the host, overwriting contents of h_arr
   cudaMemcpy((void *)h_arr, (void *)d_arr, sizeof(float) * 128, cudaMemcpyDeviceToHost);
   // ... do other stuff ...
 
-  /*
-   * Next, call a kernel that shows using shared memory
-   */
-
+  // next, call a kernel that shows using shared memory
   // as before, pass in a pointer to data in global memory
   use_shared_memory_GPU<<<1, 128>>>(d_arr); 
+  
   // copy the modified array back to the host
   cudaMemcpy((void *)h_arr, (void *)d_arr, sizeof(float) * 128, cudaMemcpyHostToDevice);
+  
   // ... do other stuff ...
   return 0;
 }
